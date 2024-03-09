@@ -105,3 +105,25 @@ a{
   border-radius: 20px;
   padding: 5px 10px;
 }
+.DummyImage{
+  width: 60px;
+}
+#deleteCategory{
+  .fa-circle-xmark{
+      color: rgb(200, 29, 29) !important;
+      font-size: 30px !important;
+  }
+  .btnClose{
+      margin: 15px 10px;
+     
+  }
+  .myPointer{
+      cursor: pointer;
+  }
+}
+#fill-recipes{
+  background-color: #f0ffef;
+  margin: 20px 10px;
+  padding: 25px 20px;
+  border-radius: 20px;
+}

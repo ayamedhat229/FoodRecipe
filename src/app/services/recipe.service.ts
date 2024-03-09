@@ -11,11 +11,17 @@ export class RecipeService implements OnInit {
   getAllRecipes(params:any):Observable<any>{
   return this._httpClient.get('Recipe',{ params})
   }
-  onEditRecipe(name:string,id:string):Observable<any>{
-    return this._httpClient.put(`Recipe/${id}`,{name})
-  }
   onDeleteRecipe(id:any):Observable<any>{
     return this._httpClient.delete(`Recipe/${id}`)
+  }
+  onAddRecipe(data:any):Observable<any>{
+    return this._httpClient.post('Recipe',data)
+  }
+  getRecipeById(id:number):Observable<any>{
+    return this._httpClient.get(`Recipe/${id}`)
+  }
+  onEditRecipe(id:number,data:any):Observable<any>{
+  return this._httpClient.put(`Recipe/${id}`, data)
   }
   ngOnInit(): void {
     

@@ -6,18 +6,28 @@ import { CategoriesComponent } from './categories/categories.component';
 import { SharedModule } from '../shared/shared.module';
 import { AddEditcomponentComponent } from './add-editcomponent/add-editcomponent.component';
 import { DeleteCategoryComponent } from './delete-category/delete-category.component';
+import { MatDialog } from '@angular/material/dialog';
 import { RecipesComponent } from './recipes/recipes.component';
+import { AddRecipeComponent } from './recipes/add-recipe/add-recipe.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+
+
 @NgModule({
   declarations: [
     AdminComponent,
     CategoriesComponent,
     AddEditcomponentComponent,
     DeleteCategoryComponent,
-    RecipesComponent,
+   RecipesComponent,
+  AddRecipeComponent,
+
+
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
+    NgxDropzoneModule,
     SharedModule
   ],
 

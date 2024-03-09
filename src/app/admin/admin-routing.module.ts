@@ -3,13 +3,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { RecipesComponent } from './recipes/recipes.component';
-
+import { AddRecipeComponent } from './recipes/add-recipe/add-recipe.component';
 const routes: Routes = [
   { path: '', component: AdminComponent ,children:[
-  {path:'recipes',component:RecipesComponent},
-  {path:'categories', component:CategoriesComponent}
+  {path:'categories', component:CategoriesComponent},
+  {path:'recipe', component:RecipesComponent},
+  {path:'add-edit-recipe', component:AddRecipeComponent},
+  {path:'edit/:id', component:AddRecipeComponent},
+  {
+    path: '',
+    loadChildren: () => import('../admin/list-user/list-user.module').then(m =>m.ListUserModule)
+  }, 
   ]}
-  
   ];
 
 @NgModule({

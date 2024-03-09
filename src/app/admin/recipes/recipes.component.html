@@ -19,7 +19,8 @@
             <p>You Can cheak all details</p>
         </div>
      <div class="col-4 text-end">
-        <button class="bg-success px-4 text-white" mat-raised-button>Add new Item
+      
+        <button class="bg-success px-4 text-white" mat-raised-button [routerLink]="['/dashboard/admin/add-edit-recipe']">Add new recipe
       </button>
      </div>
     
@@ -70,17 +71,18 @@
             </td>
             <td>{{item.price}}</td>
             
+           
+            <td>{{item.tag.name}}</td>
             <span *ngFor="let item of item.category">
               <td>{{item.name}}</td>
             </span>
-            <td>{{item.tag.name}}</td>
             <td>{{item.description}}</td>
             <td>{{item.creationDate|date:'MMM d, y, h:mm:ss a'}}</td>
             <td>{{item.modificationDate|date:'MMM d, y, h:mm:ss a'}}</td>
             <td><button mat-button [matMenuTriggerFor]="menu"><span><i class="fa-solid fa-ellipsis"></i>
               </span></button>
               <mat-menu #menu="matMenu">
-                <button mat-menu-item (click)="openEditRecipe(item)">
+                <button [routerLink]="['/dashboard/admin/edit',item.id]" mat-menu-item>
                   <i class="fa-solid fa-pen-to-square p-1">
                   </i><span>Edit</span></button>
                 <button mat-menu-item (click)="openDeleteRecipes(item)"><i class="fa-solid fa-trash-can p-1"></i><span>Delete</span></button>

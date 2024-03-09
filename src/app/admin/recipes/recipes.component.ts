@@ -45,30 +45,6 @@ export class RecipesComponent implements OnInit {
     }
   })
   }
-  //Edit Recipe
-  openEditRecipe(recipeData:any){
-    console.log(recipeData)
-    const dialogRef = this.dialog.open(AddEditcomponentComponent, {
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-     console.log(result)
-     if(result){
-      this.newEditRecipe(result,recipeData.id)
-     } 
-  });
-  }
-  newEditRecipe(name:string, id:string){
-    this._recipeService.onEditRecipe(name,id).subscribe({
-      next:(res)=>{
-       console.log(res)
-      },error:(err:any)=>{
-        console.log(err)
-      },complete:()=>{
-      this.getRecipes()
-      }
-    })
-    }
     //delete Recipe
     openDeleteRecipes(categoryName:any):void{
       console.log(categoryName)

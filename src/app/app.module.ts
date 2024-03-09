@@ -15,10 +15,14 @@ import { SharedModule } from './shared/shared.module';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    VerfiyAccountComponent
+    VerfiyAccountComponent,
+    
+   
+    
   ],
   imports: [
     BrowserModule,
