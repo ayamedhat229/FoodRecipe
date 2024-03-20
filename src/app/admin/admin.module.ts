@@ -4,13 +4,14 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { SharedModule } from '../shared/shared.module';
-import { AddEditcomponentComponent } from './add-editcomponent/add-editcomponent.component';
-import { DeleteCategoryComponent } from './delete-category/delete-category.component';
+import { AddEditcomponentComponent } from './categories/add-editcomponent/add-editcomponent.component';
+import { DeleteCategoryComponent } from './categories/delete-category/delete-category.component';
 import { MatDialog } from '@angular/material/dialog';
 import { RecipesComponent } from './recipes/recipes.component';
 import { AddRecipeComponent } from './recipes/add-recipe/add-recipe.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+
 
 
 @NgModule({
@@ -21,14 +22,12 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     DeleteCategoryComponent,
    RecipesComponent,
   AddRecipeComponent,
-
-
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     NgxDropzoneModule,
-    SharedModule
+    SharedModule,
   ],
 
 })

@@ -31,6 +31,9 @@ export class AuthService implements OnInit{
   resetPassword(data:any){
     return this._httpClient.post('Users/Reset',data)
   }
+  changePassword(data:any):Observable<any>{
+    return this._httpClient.put('Users/ChangePassword',data)
+  }
   getProfile(){
     let encoded:any=localStorage.getItem('userToken');
     let decoded:any=jwtDecode(encoded);

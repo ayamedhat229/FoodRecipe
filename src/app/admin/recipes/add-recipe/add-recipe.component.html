@@ -1,5 +1,5 @@
-<section id="fill-recipes">
-    <div class="row  align-items-center">
+<section class="fillRecipes">
+    <div class="row  align-items-center mt-4 p-4">
         <div class="col-8">
             <h2>Fill the <span class="text-success">Recipes</span> !</h2>
             <p>you can now fill the meals easily using the table and form , click here and sill it with the table !</p>
@@ -44,9 +44,13 @@
     <textarea formControlName="description" type="text" class="form-control" placeholder="Description"></textarea>
   </div>
   <ngx-dropzone class="picture w-75 m-auto" (change)="onSelect($event)">
-    <ngx-dropzone-label>Drop your image</ngx-dropzone-label>
-    <ngx-dropzone-image-preview class="child" ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f">
-      <ngx-dropzone-label><!--{{ f.name }} ({{ f.type }})--></ngx-dropzone-label>
+    <ngx-dropzone-label *ngIf="!imgSrc"><span class="text-success p-1">choose image</span></ngx-dropzone-label>
+       <ngx-dropzone-label *ngIf="imgSrc"> 
+        <img [src]="imgSrc" class="w-75">
+      </ngx-dropzone-label> 
+     
+    <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+      <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
     </ngx-dropzone-image-preview>
   </ngx-dropzone>
   <hr>

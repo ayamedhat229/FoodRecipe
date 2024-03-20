@@ -22,53 +22,44 @@ categorieIds:number=0;
 tableData:ICategory[]=[];
 tags:any[]=[];
 imgSrc:any;
+imageUrl:string='https://upskilling-egypt.com/';
 recipeId:number=0;
 recipeData:any;
-
 ids: any[] = [];
-  imagePath: any;
-
+files: File[] = [];
 constructor(private _ActivatedRoute:ActivatedRoute,private toastr:ToastrService,private _Router:Router ,private _recipeService:RecipeService, public dialog: MatDialog, private _helperService:HelperService, private _categoryService:CategoryService){
   this.recipeId=_ActivatedRoute.snapshot.params['id']
 }
-
 recipeForm=new FormGroup({
+  id:new FormControl(null,[Validators.required]),
   name:new FormControl(null,[Validators.required]),
   tagId:new FormControl(null,[Validators.required]),
   price:new FormControl(null,[Validators.required]),
   categoriesIds:new FormControl(null,[Validators.required]),
   description:new FormControl(null,[Validators.required]),
+  recipeImage:new FormControl(null,[])
  })
  onSubmit(data:FormGroup){
 console.log(data.value)
 data.value.id=this.recipeId;
 let myData=new FormData();
+  data.value.id=this.recipeId;
   myData.append('name',data.value.name);
   myData.append('tagId',data.value.tagId);
   myData.append('price',data.value.price);
   myData.append('categoriesIds',data.value.categoriesIds);
   myData.append('description',data.value.description);
-  myData.append('recipeImage',this.imgSrc);
+ // myData.append('recipeImage',this.imgSrc.name);
+ debugger
+  myData.append('recipeImage',this.imgSrc,this.imgSrc.name);
   console.log(myData)
-  this._recipeService.onAddRecipe(myData).subscribe({
-    next:(res)=>{
-      console.log(res)
-    },
-    error:(err)=>{
-      console.log(err)
-    },
-    complete:()=>{
-      this.toastr.success('Add Recipe SuccessFully','Success');
-      this._Router.navigateByUrl('dashboard/admin/recipe')
-    }
-  })
- if(this.recipeId){
-  myData.append('id',data.value.id)
-   this.editRecipe(data)
- }
-else{
-  this.addRecipe(myData)
-}
+  if(this.recipeId){
+    myData.append('id',data.value.id)
+     this.editRecipe(myData)
+   }
+  else{
+    this.addRecipe(myData)
+  }
  }
  editRecipe(data:any){
   this._recipeService.onEditRecipe(this.recipeId,data).subscribe({
@@ -81,27 +72,32 @@ else{
     complete:()=>{
       this.toastr.success('Edit Recipe SuccessFully','Success');
       this._Router.navigateByUrl('dashboard/admin/recipe')
+     
     }
   })
  }
- addRecipe(mydata:any){
-  this._recipeService.onAddRecipe(mydata).subscribe({
+ addRecipe(data:any){
+  this._recipeService.onAddRecipe(data).subscribe({
     next:(res)=>{
       console.log(res)
     },
     error:(err)=>{
       console.log(err)
+    },
+    complete:()=>{
+      this.toastr.success('Add Recipe SuccessFully','Success');
+      this._Router.navigateByUrl('dashboard/admin/recipe')
     }
   })
 
  }
- files: File[] = [];
-onSelect(event:any) {
+
+ onSelect(event:any) {
   this.imgSrc=event.addedFiles[0];
-  console.log(this.imgSrc);
+  this.recipeForm.get('recipeImage')?.setValue(this.imgSrc)
+  console.log(event);
   this.files.push(...event.addedFiles);
 }
-
 onRemove(event:any) {
   console.log(event);
   this.files.splice(this.files.indexOf(event), 1);
@@ -135,19 +131,21 @@ getAllRecipesId(id:number){
   console.log(res)
  },
  error:(err)=>{
-
+    console.log(err)
  },
  complete:()=>{
 let arr:any[]=[...this.recipeData.category]
- this.ids=arr.map(x=>x.id);
- //console.log(this.ids)
+this.ids=arr.map(x=>x.id);
+this.imgSrc=this.imageUrl+this.recipeData.imagePath
+ console.log(this.imgSrc)
  this.recipeForm.patchValue({
  name:this.recipeData.name,
  tagId:this.recipeData.tag.id,
  price:this.recipeData.price,
  description:this.recipeData.description,
+ recipeImage:this.recipeData.imagePath,
  categoriesIds:this.recipeData.category.map((x:any)=>x.id),
- //recipeImage:this.imagePath+this.recipeData.recipeImage
+ 
  })
 }
   })

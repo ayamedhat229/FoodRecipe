@@ -13,13 +13,15 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
+
 @NgModule({
   declarations: [
     AuthComponent,
     LoginComponent,
     RegisterComponent,
     ForgetPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+   
   ],
   imports: [
     CommonModule,

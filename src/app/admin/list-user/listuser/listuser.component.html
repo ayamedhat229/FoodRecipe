@@ -18,13 +18,20 @@
             <h2>Users Table Details</h2>
             <p>You Can cheak all details</p>
         </div>
-     
-     
-       <!-- <div class="input-group mb-3">
-      <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-search" style="color: #8391A1;"></i></span>
-   <input [(ngModel)]="SearchKey" (keyup.enter)=" getCategories()" type="text" class="form-control" placeholder="Search here .." aria-label="Username" aria-describedby="basic-addon1">
-     </div>-->
+        <div class="col-6">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-search" style="color: #8391A1;"></i></span>
+            <input type="text" [(ngModel)]="SearchKey" (keyup.enter)="getUsers()" class="form-control" placeholder="Search by name" aria-label="Username" aria-describedby="basic-addon1">
+           </div>
+        </div>
+        <div class="col-6">
+           <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-search" style="color: #8391A1;"></i></span>
+            <input type="text" [(ngModel)]="SearchKeyByEmail" (keyup.enter)="getUsers()" class="form-control" placeholder="Search by Email" aria-label="Username" aria-describedby="basic-addon1">
+           </div>
+        </div>
     </div>
+    
     <table class="table">
       <thead>
         <tr>
@@ -53,11 +60,17 @@
             </span></button>
             <mat-menu #menu="matMenu">
               <button mat-menu-item [routerLink]="['/dashboard/admin/view-user/',item.id]">
-                <i class="fa-regular fa-eye p-1"></i>
-               <span>View</span></button>
-              <button mat-menu-item (click)="openDeleteListUser(item)"><i class="fa-solid fa-trash-can p-1"></i><span>Delete</span></button>
+                <i class="fa-regular fa-eye primary p-1"></i>
+               <span class="primary">View</span></button>
+              <button mat-menu-item (click)="openDeleteListUser(item)"><i class="fa-solid fa-trash-can primary p-1"></i><span class="primary">Delete</span></button>
             </mat-menu></td>
         </tr>
-      </tbody>
-      
+      </tbody>     
     </table>
+    <mat-paginator [length]="length"
+    [pageSize]="pageSize"
+    [pageIndex]="pageIndex"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="handlePageEvent($event)"
+    aria-label="Select page">
+</mat-paginator>

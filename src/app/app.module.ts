@@ -12,7 +12,8 @@ import { VerfiyAccountComponent } from './auth/verfiy-account/verfiy-account.com
 import {MatDialogModule} from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
-
+import { NgxSpinnerModule } from "ngx-spinner";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 
 
@@ -34,6 +35,8 @@ import { SharedModule } from './shared/shared.module';
     ReactiveFormsModule,
     SharedModule,
     FormsModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule,
     ToastrModule.forRoot({
       closeButton:true,
       

@@ -4,9 +4,11 @@ import { DashboardComponent } from './dashboard.component';
 import { AdminGuard } from '../Guards/admin.guard'; 
 import { UsersGuard } from '../Guards/users.guard';
 import { HomeComponent } from './home/home.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 const routes: Routes = [
   { path: '', component: DashboardComponent , children:[
    {path:'home', component:HomeComponent},
+   {path:'change-Password',component:ChangePasswordComponent},
    
     {
       path: 'admin',

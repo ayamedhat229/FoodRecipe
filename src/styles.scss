@@ -121,9 +121,23 @@ a{
       cursor: pointer;
   }
 }
-#fill-recipes{
+.fillRecipes{
   background-color: #f0ffef;
-  margin: 20px 10px;
-  padding: 25px 20px;
   border-radius: 20px;
+}
+.btn-cancal{
+  color: #4AA35A;
+  background-color: white;
+  padding: 10px 8px;
+  width: 100px !important;
+  border: #4AA35A solid 2px;
+}
+.btn-main{
+  background-color: #4AA35A;
+  color: white;
+  padding: 10px 8px;
+  width: 150px !important;
+}
+.primary{
+  color: #4AA35A;
 }

@@ -1,0 +1,15 @@
+.picture img {
+  width: 300px;
+  border-radius: 80px;
+  padding: 20px 20px;
+}
+
+.container {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.btn-success {
+  position: absolute;
+  right: 25%;
+}
+/*# sourceMappingURL=view-user.component.css.map */

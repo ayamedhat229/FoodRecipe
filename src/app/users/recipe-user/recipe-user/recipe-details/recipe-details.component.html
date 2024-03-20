@@ -1,0 +1,21 @@
+<section id="recipeDetails" class="">
+    <a class="btnClose myPointer d-block text-end" (click)="onNoClick()"><i class="fa-regular fa-circle-xmark"></i></a>
+  
+<mat-dialog-content>
+    <h4>Recipe Details</h4>
+<div class="picture text-center">
+    
+    <img [src]="data.imagePath?imagePath+data.imagePath:DummyImage" class="DummyImage">
+</div>
+<div class="pt-2">
+<h4 class="text-black">1-Name:{{data.name}}</h4>
+<h4 class="text-black">2-Price:{{data.price}}</h4>
+<h4 class="text-black">3-Description:{{data.description}}</h4>
+<hr>
+</div>
+  
+</mat-dialog-content>
+<div class="text-end m-2">
+<button class="btn btn-outline-success text-end"[mat-dialog-close]="data.id">Add to Favorites</button>
+</div>
+</section>

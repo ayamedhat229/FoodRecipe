@@ -9,14 +9,14 @@ import { IList } from './list';
 export class ListuserService implements OnInit{
 
   constructor(private _httpClient:HttpClient) { }
-  getUserList():Observable<any>{
-   return this._httpClient.get('Users/')
+  getUserList(params:any):Observable<any>{
+   return this._httpClient.get('Users/',{params})
   }
   deleteUser(id:IList):Observable<any>{
    return this._httpClient.delete(`Users/${id}`)
   }
-  getUserByID(id:IList):Observable<any>{
-    return this._httpClient.get(`Users/${id}`,)
+  getUserByID(id:string):Observable<any>{
+    return this._httpClient.get(`Users/${id}`)
   }
   ngOnInit(): void {
     

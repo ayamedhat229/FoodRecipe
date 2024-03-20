@@ -9,7 +9,7 @@ export class RecipeService implements OnInit {
 
   constructor(private _httpClient:HttpClient) { }
   getAllRecipes(params:any):Observable<any>{
-  return this._httpClient.get('Recipe',{ params})
+  return this._httpClient.get('Recipe',{params})
   }
   onDeleteRecipe(id:any):Observable<any>{
     return this._httpClient.delete(`Recipe/${id}`)
@@ -23,6 +23,7 @@ export class RecipeService implements OnInit {
   onEditRecipe(id:number,data:any):Observable<any>{
   return this._httpClient.put(`Recipe/${id}`, data)
   }
+
   ngOnInit(): void {
     
   }

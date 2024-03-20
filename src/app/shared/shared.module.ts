@@ -10,7 +10,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSelectModule} from '@angular/material/select';
-
+import { MatDialogContent } from '@angular/material/dialog';
 
 //import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 @NgModule({
@@ -28,7 +28,8 @@ import {MatSelectModule} from '@angular/material/select';
     RouterModule,
     FormsModule,
     MatPaginatorModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDialogContent
   ],
 exports:[
   HttpClientModule,
@@ -39,7 +40,8 @@ exports:[
   MatIconModule,
   FormsModule,
   MatPaginatorModule,
-  MatSelectModule
+  MatSelectModule,
+  MatDialogContent
  ]
 })
 export class SharedModule { }

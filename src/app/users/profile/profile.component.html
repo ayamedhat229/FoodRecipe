@@ -1,0 +1,50 @@
+<section id="fill-recipes">
+    
+  </section>
+  <section class="form-body">
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit(profileForm)">
+    <div class="container">
+      <div class="input-group mb-3 w-75 m-auto">
+        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-user" style="color: #8391A1;"></i></span>
+        <input formControlName="userName" type="text" class="form-control" placeholder="userName" aria-label="Username" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group mb-3 w-75 m-auto">
+        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-envelope" style="color: #8391A1;"></i></span>
+        <input formControlName="email" type="email" class="form-control" placeholder="email" aria-label="Username" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group mb-3 w-75 m-auto">
+        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-envelope" style="color: #8391A1;"></i></span>
+        <input class="position-relative" formControlName="confirmPassword" [type]="hiden ? 'password' : 'text'" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
+        <a class="show-password" (click)="hiden = !hiden">
+          <i class="fa-solid primary" [class]="hiden ? 'fa-eye-slash' : 'fa-eye'"></i>
+        </a>
+      </div>
+      
+      <div class="input-group mb-3 w-75 m-auto">
+        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-earth-africa" style="color: #8391A1;"></i></span>
+        <input formControlName="country" type="text" class="form-control" placeholder="country" aria-label="Username" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group mb-3 w-75 m-auto">
+        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-phone" style="color: #8391A1;"></i></span>
+        <input formControlName="phoneNumber" type="text" class="form-control" placeholder="phoneNumber" aria-label="Username" aria-describedby="basic-addon1">
+      </div>
+      <ngx-dropzone class="picture w-75 m-auto" (change)="onSelect($event)">
+        <ngx-dropzone-label *ngIf="!imgSrc"><span class="text-success p-1">choose image</span></ngx-dropzone-label>
+           <ngx-dropzone-label *ngIf="imgSrc"> 
+            <img [src]="imgSrc" class="w-75">
+          </ngx-dropzone-label> 
+         
+        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemove(f)">
+          <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+        </ngx-dropzone-image-preview>
+      </ngx-dropzone>
+  <hr>
+  <div class="d-flex justify-content-end mb-3">
+    <button class="btn-cancal" (click)="cancelSaveData()">Cancel</button>
+   <button class="btn-main ms-2">Save</button>
+  </div>
+    </div>
+  </form>
+    
+  </section>
+  

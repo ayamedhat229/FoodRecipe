@@ -1,0 +1,18 @@
+#addCategory {
+  width: 400px;
+  padding: 20px 20px;
+  border-radius: 30px #3aae72f1;
+  border: #3aae72f1;
+  background-color: #3aae72f1;
+}
+
+#addCategory h2 {
+  color: white !important;
+  font-size: 18px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#addCategory button {
+  background-color: white !important;
+}
+/*# sourceMappingURL=add-editcomponent.component.css.map */

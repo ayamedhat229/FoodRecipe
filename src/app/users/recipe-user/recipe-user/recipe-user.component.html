@@ -10,27 +10,29 @@
         <div class="col-6">
           <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-search" style="color: #8391A1;"></i></span>
-            <input type="text" [(ngModel)]="SearchKey" (keyup.enter)="getRecipes()" class="form-control" placeholder="Search here .." aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" [(ngModel)]="SearchKey" (keyup.enter)="getRecipes()" class="form-control" placeholder="Search by name" aria-label="Username" aria-describedby="basic-addon1">
            </div>
         </div>
-       <div class="col-3">
+        <div class="col-3">
           <mat-form-field appearance="outline">
-            <mat-label>Tags</mat-label>
-            <mat-select disableRipple>
-              <mat-option *ngFor="let item of tags">{{item.name}}</mat-option>
+            <mat-label>Search by Tags</mat-label>
+            <mat-select [(ngModel)]="tagId" (selectionChange)="getRecipes()">
+              <mat-option>All</mat-option>
+              <mat-option *ngFor="let item of tags" [value]="item.id">{{item.name}}</mat-option>
             
             </mat-select>
           </mat-form-field>
         </div>
         <div class="col-3">
           <mat-form-field appearance="outline">
-            <mat-label>Category</mat-label>
-            <mat-select disableRipple>
-              <mat-option *ngFor="let item of tableData">{{item.name}}</mat-option>
+            <mat-label>Search by Category</mat-label>
+            <mat-select [(ngModel)]="categorieIds" (selectionChange)="getRecipes()">
+              <mat-option>All</mat-option>
+              <mat-option *ngFor="let item of tableData" [value]="item.id">{{item.name}}</mat-option>
+            
             </mat-select>
           </mat-form-field>
         </div>
-       </div>
        <table class="table">
         <thead>
           <tr>
@@ -65,20 +67,19 @@
               </span></button>
               <mat-menu #menu="matMenu">
                 <button  mat-menu-item>
-                  <i class="fa-regular fa-eye p-1">
-                  </i><span (click)="openDeatilsRecipes(item)">View</span></button>
-                <button mat-menu-item ><i class="fa-solid fa-trash-can p-1"></i><span (click)="openDeleteRecipes(item)">Delete</span></button>
+                  <i class="fa-regular fa-eye p-1 primary">
+                  </i><span class="primary" (click)="openRecipeDetails(item)">View</span></button>
               </mat-menu></td>
           </tr>
         </tbody>  
       </table>
- <!-- <mat-paginator [length]="length"
+ <mat-paginator [length]="length"
               [pageSize]="pageSize"
               [pageIndex]="pageIndex"
               [pageSizeOptions]="pageSizeOptions"
               (page)="handlePageEvent($event)"
               aria-label="Select page">
-</mat-paginator>-->
+</mat-paginator>
    
         
    

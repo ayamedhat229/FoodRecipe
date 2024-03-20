@@ -4,6 +4,7 @@ import { AdminComponent } from './admin.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { AddRecipeComponent } from './recipes/add-recipe/add-recipe.component';
+
 const routes: Routes = [
   { path: '', component: AdminComponent ,children:[
   {path:'categories', component:CategoriesComponent},

@@ -3,7 +3,6 @@ import { ListuserService } from '../listuser.service';
 import { IList } from '../list';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
-import { DeleteCategoryComponent } from '../../delete-category/delete-category.component';
 import { ToastrService } from 'ngx-toastr';
 import { DeleteUserListComponent } from '../delete-user-list/delete-user-list.component';
 
@@ -18,10 +17,25 @@ export class ListuserComponent implements OnInit {
   tableUser: IList[]=[];
   imagePath:string='https://upskilling-egypt.com/';
   DummyImage:string='../../../assets/images/userphoto.png';
+  SearchKey:string='';
+  SearchKeyByEmail:string='';
+  length = 20;
+  pageSize = 5;
+  pageNumber=1;
+  pageIndex = 0;
+  pageSizeOptions = [5, 10, 20];
+  pageEvent:PageEvent|any;
 
   constructor(private _listUser:ListuserService,public dialog: MatDialog,private toastr: ToastrService, private _Router:Router){}
-  getAllUserRecipe(){
-    this._listUser.getUserList().subscribe({
+ 
+  getUsers(){
+    let paramsApi={
+      pageSize:this.pageSize,
+      pageNumber:this.pageNumber,
+      userName:this.SearchKey,
+      email:this.SearchKeyByEmail
+      }
+    this._listUser.getUserList(paramsApi).subscribe({
       next:(res)=>{
        console.log(res)
        this.tableUser=res.data
@@ -30,6 +44,7 @@ export class ListuserComponent implements OnInit {
       console.log(err)
     },
     complete:()=>{
+
     }
     })
   }
@@ -55,25 +70,20 @@ export class ListuserComponent implements OnInit {
       console.log(err)
     },
     complete:()=>{
-      this.getAllUserRecipe()
+      this.getUsers()
       this.toastr.success('The user has been deleted successfully','Success');
     }
     })
   }
-  /*openViewProfile(userProfile:IList){
-    this._Router.navigateByUrl('dashboard/admin/listuser/view-profile')
-    /*console.log(userProfile)
-    const dialogRef = this.dialog.open(ViewProfileComponent, {
-      data:userProfile
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-     console.log(result)
-     if(result){
-      this.onViewProfile(result)
-     }*/
+     handlePageEvent(e: PageEvent) {
+      this.pageEvent = e;
+      this.length = e.length;
+      this.pageSize = e.pageSize;
+      this.pageIndex = e.pageIndex;
+      this.getUsers()
+    }
  
 ngOnInit(): void {
- this.getAllUserRecipe()
+ this.getUsers()
 }
 }

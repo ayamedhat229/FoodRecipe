@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 text-center" *ngFor="let item of tableRecipe">
+      <div class="card position-relative w-100">
+      <div class="text-center">
+        <img [src]="item.recipe.imagePath?imagePath+item.recipe.imagePath:DummyImage" class="DummyImage card-img-top w-50">
+        </div>
+        <div class="delete-icon">
+          <a class="" (click)="removeRecipe(item.id)">
+          <i class="fa-solid fa-trash"></i>
+          </a>
+        </div>
+        <div class="card-body">
+          <h4>{{item.recipe.name}}</h4>
+          <p class="card-text">{{item.recipe.description}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

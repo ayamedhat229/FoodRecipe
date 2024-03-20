@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RecipeService } from '../../services/recipe.service';
 import { IRecipes} from '../../../models/recipes';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { AddEditcomponentComponent } from '../add-editcomponent/add-editcomponent.component';
-import { DeleteCategoryComponent } from '../delete-category/delete-category.component';
+import { DeleteCategoryComponent } from '../categories/delete-category/delete-category.component';
 import { PageEvent } from '@angular/material/paginator';
 import { HelperService } from '../helper.service';
 import { CategoryService } from '../../services/category.service';
@@ -27,13 +26,16 @@ export class RecipesComponent implements OnInit {
   pageIndex = 0;
   pageSizeOptions = [5, 10, 20];
   pageEvent:PageEvent|any;
-
+  tagId:number=0;
+  categorieIds:number=0;
   constructor(private _recipeService:RecipeService, public dialog: MatDialog, private _helperService:HelperService, private _categoryService:CategoryService){}
   getRecipes(){
     let paramsApi={
       pageSize:this.pageSize,
       pageNumber:this.pageNumber,
       name:this.SearchKey,
+      tagId:this.tagId,
+      categoryId:this.categorieIds
       }
     this ._recipeService.getAllRecipes(paramsApi).subscribe({
       next:(res)=>{
@@ -81,7 +83,7 @@ export class RecipesComponent implements OnInit {
          },complete:()=>{
       }})
     }
-  getAllCategories(){
+  getAllCategoriesName(){
     this._categoryService.getAllCartegories(1000).subscribe({
       next:(res)=>{
         console.log(res)
@@ -96,10 +98,11 @@ export class RecipesComponent implements OnInit {
       this.pageSize = e.pageSize;
       //this.pageNumber=e.pageNumber;
       this.pageIndex = e.pageIndex;
+      this.getRecipes();
     }
   ngOnInit(): void {
     this.getRecipes()
    this.getAllTages()
-   this.getAllCategories()
+   this.getAllCategoriesName()
   }
 }

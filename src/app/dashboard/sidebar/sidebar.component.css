@@ -1,0 +1,26 @@
+section {
+  width: 220px;
+  border-top-right-radius: 58px;
+}
+
+section ul {
+  padding: 10px;
+}
+
+section ul li {
+  padding: 10px;
+  list-style: none;
+}
+
+section ul li a {
+  text-decoration: none;
+}
+
+section ul li a span {
+  margin: 0 6px;
+}
+
+.sidebar.shrunken {
+  width: 80px;
+}
+/*# sourceMappingURL=sidebar.component.css.map */

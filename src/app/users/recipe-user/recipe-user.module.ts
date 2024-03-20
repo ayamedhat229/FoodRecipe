@@ -6,11 +6,14 @@ import { FormsModule } from '@angular/forms';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSelectModule} from '@angular/material/select';
 import { SharedModule } from '../../shared/shared.module';
+import { MatDialogContent } from '@angular/material/dialog';
+import { RecipeDetailsComponent } from './recipe-user/recipe-details/recipe-details.component';
 
 
 @NgModule({
   declarations: [
     RecipeUserComponent,
+    RecipeDetailsComponent,
    
   ],
   imports: [
@@ -19,7 +22,8 @@ import { SharedModule } from '../../shared/shared.module';
     SharedModule,
    MatPaginatorModule,
    FormsModule,
-   MatSelectModule
+   MatSelectModule,
+   MatDialogContent
 
   ]
 })

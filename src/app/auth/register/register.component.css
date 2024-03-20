@@ -1,0 +1,45 @@
+#register {
+  background-image: url(../../../assets/images/bgregister.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.register-form {
+  width: 70%;
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 8px 0px;
+  margin: 30px 15px;
+}
+
+.register-form h2 {
+  color: #494949;
+}
+
+.register-form p {
+  color: rgba(73, 73, 73, 0.6);
+}
+
+.picture {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 10px !important;
+  margin: auto;
+  border-radius: 50%;
+}
+
+.a {
+  cursor: pointer;
+}
+/*# sourceMappingURL=register.component.css.map */

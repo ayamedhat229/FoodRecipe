@@ -1,0 +1,25 @@
+.delete-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background-color: #fff;
+  border: 1px solid #1f263e;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  right: 5px;
+  top: 20px;
+  color: #dd4c4c;
+}
+
+i {
+  cursor: pointer;
+}
+/*# sourceMappingURL=favorites.component.css.map */

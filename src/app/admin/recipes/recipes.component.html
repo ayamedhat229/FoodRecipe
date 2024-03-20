@@ -28,27 +28,29 @@
         <div class="col-6">
           <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-search" style="color: #8391A1;"></i></span>
-            <input type="text" [(ngModel)]="SearchKey" (keyup.enter)="getRecipes()" class="form-control" placeholder="Search here .." aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" [(ngModel)]="SearchKey" (keyup.enter)="getRecipes()" class="form-control" placeholder="Search by name" aria-label="Username" aria-describedby="basic-addon1">
            </div>
         </div>
         <div class="col-3">
           <mat-form-field appearance="outline">
-            <mat-label>Tags</mat-label>
-            <mat-select disableRipple>
-              <mat-option *ngFor="let item of tags">{{item.name}}</mat-option>
+            <mat-label>Search by Tags</mat-label>
+            <mat-select [(ngModel)]="tagId" (selectionChange)="getRecipes()">
+              <mat-option>All</mat-option>
+              <mat-option *ngFor="let item of tags" [value]="item.id">{{item.name}}</mat-option>
             
             </mat-select>
           </mat-form-field>
         </div>
         <div class="col-3">
           <mat-form-field appearance="outline">
-            <mat-label>Category</mat-label>
-            <mat-select disableRipple>
-              <mat-option *ngFor="let item of tableData">{{item.name}}</mat-option>
+            <mat-label>Search by Category</mat-label>
+            <mat-select [(ngModel)]="categorieIds" (selectionChange)="getRecipes()">
+              <mat-option>All</mat-option>
+              <mat-option *ngFor="let item of tableData" [value]="item.id">{{item.name}}</mat-option>
+            
             </mat-select>
           </mat-form-field>
         </div>
-       </div>
        <table class="table">
         <thead>
           <tr>
@@ -56,7 +58,7 @@
             <th class="col">Images</th>
             <th class="col">Price</th>
             <th class="col">Tag</th>
-            <th class="col">Category</th>
+            <th class="col-1">Category</th>
             <th class="col">Description</th>
             <th class="col">creationData</th>
             <th class="col">ModificationData</th>
@@ -83,9 +85,9 @@
               </span></button>
               <mat-menu #menu="matMenu">
                 <button [routerLink]="['/dashboard/admin/edit',item.id]" mat-menu-item>
-                  <i class="fa-solid fa-pen-to-square p-1">
-                  </i><span>Edit</span></button>
-                <button mat-menu-item (click)="openDeleteRecipes(item)"><i class="fa-solid fa-trash-can p-1"></i><span>Delete</span></button>
+                  <i class="fa-solid fa-pen-to-square primary p-1">
+                  </i><span class="primary">Edit</span></button>
+                <button mat-menu-item (click)="openDeleteRecipes(item)"><i class="fa-solid fa-trash-can p-1 primary"></i><span class="primary">Delete</span></button>
               </mat-menu></td>
           </tr>
         </tbody>  

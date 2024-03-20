@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { ICategory } from '../../../../models/category';
-import { DeleteCategoryComponent } from '../../../admin/delete-category/delete-category.component';
+import { ToastrService } from 'ngx-toastr';
 import { HelperService } from '../../../admin/helper.service';
 import { CategoryService } from '../../../services/category.service';
 import { RecipeService } from '../../../services/recipe.service';
-
+import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
+import { UserService } from '../../service/user.service';
 @Component({
   selector: 'app-recipe-user',
   templateUrl: './recipe-user.component.html',
@@ -26,13 +27,16 @@ tableData:ICategory[]=[];
  pageIndex = 0;
  pageSizeOptions = [5, 10, 20];
  pageEvent:PageEvent|any;
-
- constructor(private _recipeService:RecipeService, public dialog: MatDialog, private _helperService:HelperService, private _categoryService:CategoryService){}
+ tagId:number=0;
+  categorieIds:number=0;
+ constructor(private toastr:ToastrService,private _recipeService:RecipeService, public dialog: MatDialog, private _helperService:HelperService, private _categoryService:CategoryService,private _userService:UserService){}
  getRecipes(){
    let paramsApi={
-     pageSize:this.pageSize,
+    pageSize:this.pageSize,
      pageNumber:this.pageNumber,
      name:this.SearchKey,
+     tagId:this.tagId,
+     categoryId:this.categorieIds
      }
    this ._recipeService.getAllRecipes(paramsApi).subscribe({
      next:(res)=>{
@@ -43,32 +47,35 @@ tableData:ICategory[]=[];
    },complete:()=>{
    }
  })
- }
-   //delete Recipe
-   openDeleteRecipes(categoryName:any):void{
-     console.log(categoryName)
-     const dialogRef = this.dialog.open(DeleteCategoryComponent, {
-       data:categoryName
-     });
-     dialogRef.afterClosed().subscribe(result => {
-       console.log('The dialog was closed');
-      console.log(result)
-      if(result){
-       this.deleteRecipe(result)
+ }   
+   openRecipeDetails(item:any):void{
+    console.log(item)
+    const dialogRef = this.dialog.open(RecipeDetailsComponent, {
+      data:item
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+     console.log(result)
+     if(result){
+      this.addFavoriteRecipe(result)
+     }
+  });
+  }
+  addFavoriteRecipe(id:number){
+    this._userService.saveFavouriteRecipe(id).subscribe({
+      next:(res)=>{
+        console.log(res)
+      },
+      error:(err)=>{
+        console.log(err)
+        this.toastr.error('try again', 'Recipe not Added to Favorites');
+      },
+      complete:()=>{
+        this.toastr.success('Success', 'Recipe Added to Favorites');
       }
-   });
-   }
-   deleteRecipe(recipeId:any){
-      this._recipeService.onDeleteRecipe(recipeId).subscribe({
-       next:(res)=>{
-         console.log(res)
-       },error:(err:any)=>{
-         console.log(err)
-       },complete:()=>{
-         this.getRecipes()
-       }
       })
-   }
+    }
+  
    //get all Tags
    getAllTages(){
      this._helperService.getTags().subscribe({
@@ -93,8 +100,8 @@ tableData:ICategory[]=[];
      this.pageEvent = e;
      this.length = e.length;
      this.pageSize = e.pageSize;
-     //this.pageNumber=e.pageNumber;
      this.pageIndex = e.pageIndex;
+     this.getRecipes()
    }
  ngOnInit(): void {
    this.getRecipes()

@@ -1,9 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { CategoryService } from '../../services/category.service';
 import { ICategory, table } from '../../../models/category';
-import { AddEditcomponentComponent } from '../add-editcomponent/add-editcomponent.component';
+import { AddEditcomponentComponent } from './add-editcomponent/add-editcomponent.component';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { DeleteCategoryComponent } from '../delete-category/delete-category.component';
+import { DeleteCategoryComponent } from './delete-category/delete-category.component';
 import { PageEvent } from '@angular/material/paginator';
 
 @Component({
@@ -56,7 +56,7 @@ export class CategoriesComponent implements OnInit {
   openEditCategory(categoryData:any):void{
     console.log(categoryData)
     const dialogRef = this.dialog.open(AddEditcomponentComponent, {
-      data:categoryData
+      data:categoryData.name
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
@@ -115,8 +115,8 @@ deleteCategory(categoryId:any){
     this.pageEvent = e;
     this.length = e.length;
     this.pageSize = e.pageSize;
-    //this.pageNumber=e.pageNumber;
     this.pageIndex = e.pageIndex;
+    this.getCategories()
   }
 
 ngOnInit(): void {

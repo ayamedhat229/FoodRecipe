@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "delete-user-list.component.scss"
+    ],
+    "names": [],
+    "file": "delete-user-list.component.css"
+}

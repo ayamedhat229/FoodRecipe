@@ -13,16 +13,21 @@
         </div>
     </div>
 </section>
-<section id="fill-recipes">
-    <div class="row  align-items-center">
+<div class="fillRecipes" *ngFor="let item of type">
+    <div class="">
+    <div class="row align-items-center mt-4 p-4" *ngIf="item.isActive">
         <div class="col-8">
-            <h2>Fill the <span class="text-success">Recipes</span> !</h2>
-            <p>you can now fill the meals easily using the table and form , click here and sill it with the table !</p>
+            <h2>{{item.text}} <span class="text-success">{{item.textSpan}}</span> !</h2>
+            <p>{{item.paragraph}}</p>
         </div>
      <div class="col-4 text-end">
-        <button class="main px-4" [routerLink]="['/dashboard/admin/recipe']">
-            <span>Fill Recipes </span><span class="mx-2"><i class="fa-solid fa-arrow-right"></i></span></button>
+        <button class="main px-4" [routerLink]="item.link">
+            <span>{{item.buttonName}}</span>
+            <span class="mx-2"><i [class]="item.icon"></i></span>
+        </button>
      </div>
     </div>
-    
-</section>
+    </div>
+</div>
+
+
