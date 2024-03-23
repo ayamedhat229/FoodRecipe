@@ -66,9 +66,9 @@
         <td><button mat-button [matMenuTriggerFor]="menu"><span><i class="fa-solid fa-ellipsis"></i>
               </span></button>
               <mat-menu #menu="matMenu">
-                <button  mat-menu-item>
+                <button  mat-menu-item (click)="openRecipeDetails(item)">
                   <i class="fa-regular fa-eye p-1 primary">
-                  </i><span class="primary" (click)="openRecipeDetails(item)">View</span></button>
+                  </i><span class="primary">View</span></button>
               </mat-menu></td>
           </tr>
         </tbody>  
