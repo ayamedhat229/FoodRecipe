@@ -19,7 +19,6 @@
             <p>You Can cheak all details</p>
         </div>
      <div class="col-4 text-end">
-      
         <button class="bg-success px-4 text-white" mat-raised-button [routerLink]="['/dashboard/admin/add-edit-recipe']">Add new recipe
       </button>
      </div>
@@ -92,13 +91,14 @@
           </tr>
         </tbody>  
       </table>
-      <mat-paginator [length]="length"
-              [pageSize]="pageSize"
-              [pageIndex]="pageIndex"
-              [pageSizeOptions]="pageSizeOptions"
-              (page)="handlePageEvent($event)"
-              aria-label="Select page">
-</mat-paginator>
+      <mat-paginator
+      [length]="tableResponse?.totalNumberOfRecords"
+       [pageSize]="tableResponse?.pageSize"
+       [pageSizeOptions]="pageSizeOptions"
+       [pageIndex]="tableResponse?.pageNumber"
+       (page)="handlePageEvent($event)"
+       aria-label="Select page">
+ </mat-paginator>
    
         
    

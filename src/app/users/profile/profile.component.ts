@@ -90,8 +90,5 @@ imageUrl:string='https://upskilling-egypt.com/';
  })
 }
 
-cancelSaveData(){
-  this.toastr.error('Edit Profile not success','try again');
-  
-}
+
 }

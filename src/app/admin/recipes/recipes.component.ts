@@ -20,7 +20,7 @@ export class RecipesComponent implements OnInit {
   SearchKey:string='';
   imagePath:string='https://upskilling-egypt.com/';
   DummyImage:string='../../../assets/images/reciepePic.jpg';
-  length = 20;
+  length = 50;
   pageSize = 5;
   pageNumber=1;
   pageIndex = 0;
@@ -28,6 +28,7 @@ export class RecipesComponent implements OnInit {
   pageEvent:PageEvent|any;
   tagId:number=0;
   categorieIds:number=0;
+  tableResponse:any;
   constructor(private _recipeService:RecipeService, public dialog: MatDialog, private _helperService:HelperService, private _categoryService:CategoryService){}
   getRecipes(){
     let paramsApi={
@@ -40,7 +41,8 @@ export class RecipesComponent implements OnInit {
     this ._recipeService.getAllRecipes(paramsApi).subscribe({
       next:(res)=>{
         this.tableRecipes=res.data;
-        console.log(res)
+        console.log(res.pageSize)
+        this.tableResponse = res;
     },error:(err)=>{
       console.log(err)
     },complete:()=>{
@@ -93,8 +95,8 @@ export class RecipesComponent implements OnInit {
   
   }
     handlePageEvent(e: PageEvent) {
-      this.pageEvent = e;
-      this.length = e.length;
+     // this.pageEvent = e;
+     // this.length = e.length;
       this.pageSize = e.pageSize;
       //this.pageNumber=e.pageNumber;
       this.pageIndex = e.pageIndex;
