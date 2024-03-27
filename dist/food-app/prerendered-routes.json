@@ -1,0 +1,21 @@
+{
+  "routes": [
+    "/auth",
+    "/auth/forgetPassword",
+    "/auth/login",
+    "/auth/register",
+    "/auth/resetPassword",
+    "/dashboard",
+    "/dashboard/admin",
+    "/dashboard/admin/add-edit-recipe",
+    "/dashboard/admin/categories",
+    "/dashboard/admin/listuser",
+    "/dashboard/admin/recipe",
+    "/dashboard/change-Password",
+    "/dashboard/home",
+    "/dashboard/users",
+    "/dashboard/users/favorites",
+    "/dashboard/users/profile",
+    "/dashboard/users/recipe-user"
+  ]
+}
